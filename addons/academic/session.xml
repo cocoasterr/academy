@@ -8,7 +8,11 @@
         <field name="type">tree</field>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-            <tree string="Session">
+            <tree string="Session"
+                decoration-success="percentage_taken_seats &lt; 50"
+                decoration-warning="percentage_taken_seats &gt;= 50 and percentage_taken_seats &lt; 80"
+                decoration-danger="percentage_taken_seats &gt;= 80"
+            >
                 <field name="name"/>
                 <field name="course_id"/>
                 <field name="instructure_id"/>
