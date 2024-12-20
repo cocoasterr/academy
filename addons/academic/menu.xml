@@ -1,0 +1,138 @@
+<odoo>
+<data>
+
+    <!-- ACTION COURSE -->
+    <!-- membuat action window -->
+    <!-- id dari action di menu item -->
+    <!-- ir.actions.act_window, model ini dari odoo, untuk menampilkan halaman baru--> 
+    <record 
+    id="action_course_list"
+    model="ir.actions.act_window"
+    >
+        <!-- Judul halaman baru -->
+        <field name="name">Register Course</field>
+        <!-- nama kelas yang akan dibuat dan muncul di halaman ini -->
+        <field name="res_model">academic.course</field>
+        <!-- Jika data di academic course tidak ada, maka akan muncul halaman help-->
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new course.
+            </p>
+
+            <p>
+                Click Create to create new course
+            </p>
+        </field>
+    </record>
+
+    <!-- ACTION SESSION -->
+    <record 
+    id = "action_session_list"
+    model="ir.actions.act_window"
+    >
+        <field name = "name">Session</field>
+        <field name = "res_model">academic.session</field>
+        <!-- menampilkan data tree atau form -->
+        <field name = "view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new session.
+            </p>
+
+            <p>
+                Click Create to create new session
+            </p>
+        </field>
+    </record>
+
+    <!-- ACTION ATTENDEE -->
+    <record 
+    id="action_attendee_list"
+    model="ir.actions.act_window"
+    >
+        <field name="name">Attendee</field>
+        <field name="res_model">academic.attendee</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new attendee.
+            </p>
+
+            <p>
+                Click Create to create new attendee
+            </p>
+        </field>
+    </record>
+
+    <!-- ACTION Instructure -->
+    <record 
+    id="action_instructure_list"
+    model="ir.actions.act_window"
+    >
+        <field name="name">List Instructure</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">['|', '|', ('is_instructure','=',True),('category_id','=','instructure'), ('category_id', '=', 'trainer')]</field>
+        <field name="context">{"default_is_instructure": 1, "default_category_id": "instructure"}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new instructure.
+            </p>
+
+            <p>
+                Click Create to create new instructure
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu item for Academic -->
+    <!-- menu item itu untuk menampilkan menu di Framework odoo -->
+    <!-- id = refrensi id -->
+    <!-- name = lable yang akan muncul di aplikasi kita -->
+    <!-- sequence = semakin kecil semakin ke kiri -->
+    <menuitem 
+    id="academic_0" 
+    name="Academic"
+    sequence="10"
+    />
+    <!-- membuat submenu -->
+    <!-- parent itu untuk memanggil root menu biar taruhnya dibawah dari root menu nya-->
+    <menuitem 
+    id="academic_1"
+    name="Academic"
+    parent="academic_0"
+    sequence="20"
+    />
+    <!-- action = saat di click akan menampilkan halaman baru -->
+    <menuitem 
+    id="menu_academic_course"
+    name="Course"
+    parent="academic_1"
+    action="action_course_list"
+    sequence="20"
+    />
+    <!-- session -->
+    <menuitem 
+    id="menu_academic_session"
+    name="Session"
+    parent="academic_1"
+    action="action_session_list"
+    sequence="30"
+    />
+    <!-- attendee -->
+    <menuitem 
+    id="menu_academic_attendee"
+    name="Attendee"
+    parent="academic_1"
+    action="action_attendee_list"
+    sequence="40"
+    />
+    <!-- Instructure -->
+    <menuitem 
+    id="menu_academic_instructure"
+    name="Instructure"
+    parent="academic_1"
+    action="action_instructure_list"
+    sequence="50"
+    />
+</data>
+</odoo>

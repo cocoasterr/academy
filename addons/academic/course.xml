@@ -1,0 +1,64 @@
+<odoo>
+<data>
+    <!-- Tree View -->
+    <record id="view_academic_course_tree" model="ir.ui.view">
+        <field name="name">academic.course.tree</field>
+        <field name="model">academic.course</field>
+        <field name="type">tree</field>
+        <field name="priority" eval="8"></field>
+        <field name="arch" type="xml">
+            <tree string="Course">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="resposible_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_academic_course_form" model="ir.ui.view">
+        <field name="name">academic.course.form</field>
+        <field name="model">academic.course</field>
+        <field name="type">form</field>
+        <field name="priority" eval="8"></field>
+        <field name="arch" type="xml">
+            <form string="Course Form">
+                <!-- sheet untuk menampilkan data di halaman form -->
+                <sheet>
+                    <!-- untuk judul title standard odoo -->
+                    <div class="oe_title">
+                        <!-- untuk menampilkan label -->
+                        <label for="name" class="oe_edit_only" string="Course Name"/>
+
+                        <h1>
+                            <field name="name" placeholder="Name"/>
+                        </h1>
+                    </div>
+                    <!-- group untuk mengelompokan field dalam 1 section -->
+                    <group>
+                        <field name="resposible_id"/>   
+                    </group>
+                    <!-- untuk menampilkan field description -->
+                    <notebook>
+                        <page string="Description">
+                            <field name="description" placeholder="Description"/>
+                        </page>
+                        <page string="Sessions">
+                            <field name="session_ids" nolabel="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="start_date"/>
+                                    <field name="duration"/>
+                                    <field name="seats"/>
+                                    <field name="active"/>
+                                    <field name="instructure_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</data>
+</odoo>

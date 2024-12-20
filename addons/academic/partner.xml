@@ -1,0 +1,15 @@
+<odoo>
+<data>
+    <record id="partner_instructure_form" model="ir.ui.view">
+        <field name="name">partner_instructure_form</field>
+        <field name="model">res.partner</field>
+        <!-- untuk inherit tambahin ini -->
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="category_id" position="after">
+                <field name="is_instructure"/>
+            </field>
+        </field>
+    </record>
+</data>
+</odoo>
