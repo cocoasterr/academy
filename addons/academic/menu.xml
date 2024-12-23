@@ -33,7 +33,7 @@
         <field name = "name">Session</field>
         <field name = "res_model">academic.session</field>
         <!-- menampilkan data tree atau form -->
-        <field name = "view_mode">tree,form</field>
+        <field name = "view_mode">tree,form,calendar</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Click to create a new session.

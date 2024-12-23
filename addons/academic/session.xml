@@ -69,6 +69,62 @@
         </field>
     </record>
 
+    <!-- Calendar View -->
+    <record id="view_academic_session_calendar" model="ir.ui.view">
+        <field name="name">Session Calendar</field>
+        <field name="model">academic.session</field>
+        <field name="arch" type="xml">
+            <calendar
+                string="Session Calendar"
+                date_start="start_date"
+                color="course_id"
+            >
+                <field name = "name"></field>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_academic_session_search" model="ir.ui.view">
+        <field name = "name">academic.session.search</field>
+        <field name = "model">academic.session</field>
+        <field name = "arch" type = "xml">
+            <search string="Search Session">
+                <!-- ini aman muncul di search bar -->
+                <field name="name"/>
+                <field name="instructure_id"/>
+                <filter 
+                string="Non zero duration" 
+                name="non_zero"
+                domain="[('duration', '>', 0)]"
+                />
+
+                <!-- ini akan muncul di group by -->
+                <group string = "Group By">
+                    <!-- yang terpenting isi context untuk group  by dan domain kosong kan saja -->
+                    <filter 
+                    name = "group_by_course" 
+                    string = "Course"
+                    context="{'group_by': 'course_id'}"
+                    domain="[]"
+                    />
+                    <filter 
+                    name = "group_by_instructure" 
+                    string = "Instructure"
+                    context="{'group_by': 'instructure_id'}"
+                    domain="[]"
+                    />
+                    <filter 
+                    name = "group_by_date" 
+                    string = "Date"
+                    context="{'group_by': 'start_date'}"
+                    domain="[]"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
 </data>
 
 </odoo>
