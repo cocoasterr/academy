@@ -11,10 +11,16 @@ class Attendee(models.Model):# package bawaan odoo
     partner_id = fields.Many2one(comodel_name="res.partner",
                                      string="Partner ID", required = True)
     
+    course_id = fields.Many2one(
+        comodel_name="academic.course",
+        string="Course",
+        related="session_id.course_id",
+        store=True,
+    )
+    
     @api.onchange('partner_id')
     def _on_change_partner_id(self):
         self.name = self.partner_id.name
-        
         
     # to avoid mutliple atendee with _sql_constraints
     _sql_constraints = [
