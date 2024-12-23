@@ -125,6 +125,19 @@
         </field>
     </record>
 
+
+    <!-- Graph -->
+        <record id="view_academic_session_graph" model="ir.ui.view">
+            <field name = "name">view_academic_session_graph</field>
+            <field name = "model">academic.session</field>
+            <field name = "arch" type = "xml">
+                <graph string = "Session" type="bar">
+                    <field name = "instructure_id"/>
+                    <!-- x axis: many2one, date -->
+                    <!-- y axis: numeric -->
+                </graph>
+            </field>
+        </record>
 </data>
 
 </odoo>
