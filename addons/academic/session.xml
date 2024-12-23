@@ -49,6 +49,7 @@
                     </group>
                     <!-- Group kolom kanan -->
                     <group>
+                        <field name="image_session" widget="image" class="oe_avatar oe_left"/>
                         <field name="duration"/>
                         <field name ="seats"/>
                         <field name="percentage_taken_seats" widget="progressbar"/>
@@ -127,17 +128,52 @@
 
 
     <!-- Graph -->
-        <record id="view_academic_session_graph" model="ir.ui.view">
-            <field name = "name">view_academic_session_graph</field>
-            <field name = "model">academic.session</field>
-            <field name = "arch" type = "xml">
-                <graph string = "Session" type="bar">
-                    <field name = "instructure_id"/>
-                    <!-- x axis: many2one, date -->
-                    <!-- y axis: numeric -->
-                </graph>
-            </field>
-        </record>
+    <record id="view_academic_session_graph" model="ir.ui.view">
+        <field name = "name">view_academic_session_graph</field>
+        <field name = "model">academic.session</field>
+        <field name = "arch" type = "xml">
+            <graph string = "Session" type="bar">
+                <field name = "instructure_id"/>
+                <!-- x axis: many2one, date -->
+                <!-- y axis: numeric -->
+            </graph>
+        </field>
+    </record>
+
+    <!-- kanban -->
+    <record id="view_academic_session_kanban" model="ir.ui.view">
+        <field name = "name">view_academic_session_kanban</field>
+        <field name = "model">academic.session</field>
+        <field name = "arch" type = "xml">
+            <!-- buat id karna nanti akan digunakan di kanban -->
+            <!-- membuat default group by course id -->
+            <kanban default_group_by="course_id">
+                <field name="id"/>
+                <template>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_vignette">
+                            <a type = "open">
+                                <div class="oe_kanban_details">
+                                    <!-- dihtml akan menjadi src, secara template engine akan diproses dulu sesuai dengan data yang akan di terima (field - kanban) --> 
+                                    <!-- panggil function kanban image, kanban_image("<nama model>", "<nama field>", "<id>") -->
+                                    <img t-att-src="kanban_image('academic.session', 'image_session', record.id.value)" class="o_kanban_image"/>
+                                    <h4>
+                                        <!-- <a type="open"> -->
+                                        <field name="name"/>
+                                        <!-- </a> -->
+                                    </h4>
+                                    <ul>
+                                        <li>Seats: <field name="seats"/></li>
+                                        <li>Taken Seats: <field name="percentage_taken_seats"/></li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div>
+                    </t>
+                </template>
+            </kanban>
+        </field>
+    </record>
 </data>
 
 </odoo>

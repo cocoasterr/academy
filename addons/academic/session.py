@@ -22,6 +22,8 @@ class Session(models.Model):# package bawaan odoo
         ondelete="cascade",
         )
     
+    image_session = fields.Binary(string="Image Session")
+    
     # compute field example, jadi _calc_taken_seats itu func dari class Session
     percentage_taken_seats = fields.Float(string="Percentage Taken Seats", 
                                compute="_calc_taken_seats",
