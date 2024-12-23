@@ -29,6 +29,24 @@ class Session(models.Model):# package bawaan odoo
                                compute="_calc_taken_seats",
                             #    store=True, kalau mau disimpan in memory
                                )
+    
+    state = fields.Selection(
+        string="state",
+        selection=[("draft", "Draft"), ("open","Open"), ("done", "Done")],
+        required=True,
+        readonly=True,
+        default="draft",
+        )
+    
+    def action_draft(self):
+        self.state = "draft"
+    
+    def action_open(self):
+        self.state = "open"
+
+    def action_done(self):
+        self.state = "done"
+    
     # lalu buat class nya
     def _calc_taken_seats(self):
         for rec in self:
