@@ -34,39 +34,44 @@
             <form string="Session">
 
                 <header>
-                    <button string="Confirm" type="object" name="action_open" states="draft"/>
-                    <button string="Mark as done" type="object" name="action_done" states="open"/>
-                    <button string="Reset" type="object" name="action_draft" states="open,done"/>
+                    <button string="Confirm" type="object" name="action_open" states="draft" groups="academic.group_academic_user"/>
+                    <button string="Mark as done" type="object" name="action_done" states="open" groups="academic.group_academic_manager"/>
+                    <button string="Reset" type="object" name="action_draft" states="open,done" groups="academic.group_academic_manager"/>
                     <field name="state" widget="statusbar"></field>
                 </header>
+
+                <!-- 
+                Jika attrs != draft read only hanya baca tidak bisa di edit
+                attrs="{'readonly': [('state', '!=', 'draft')]}" 
+                -->
 
                 <div class="oe_title">
                     <!-- sheet untuk menampilkan data di halaman form -->
                     <label for="name" class="oe_edit_only" string="Session Name"/> 
                     <h1>
-                        <field name="name" placeholder="Name"/>
+                        <field name="name" placeholder="Name" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                     </h1>
                 </div>
                 <group>
                     <!-- Group kolom kiri -->
                     <group>
-                        <field name="course_id"/>
+                        <field name="course_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         <!-- melakukan filter is_instructure yang true -->
-                        <field name="instructure_id" domain="['|','|', ('is_instructure', '=', True), ('category_id', '=', 'instructure'), ('category_id', '=', 'trainer')]"/>
-                        <field name="start_date"/>
+                        <field name="instructure_id" attrs="{'readonly': [('state', '!=', 'draft')]}" domain="['|','|', ('is_instructure', '=', True), ('category_id', '=', 'instructure'), ('category_id', '=', 'trainer')]"/>
+                        <field name="start_date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                     </group>
                     <!-- Group kolom kanan -->
                     <group>
-                        <field name="image_session" widget="image" class="oe_avatar oe_left"/>
-                        <field name="duration"/>
-                        <field name ="seats"/>
-                        <field name="percentage_taken_seats" widget="progressbar"/>
+                        <field name="image_session" attrs="{'readonly': [('state', '!=', 'draft')]}" widget="image" class="oe_avatar oe_left"/>
+                        <field name="duration" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <field name ="seats" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <field name="percentage_taken_seats" attrs="{'readonly': [('state', '!=', 'draft')]}" widget="progressbar"/>
                         <field name="active"/>
                     </group>
                 </group>
                 <notebook>
                     <page string="Attendees">
-                        <field name="attendee_ids" nolabel="1">
+                        <field name="attendee_ids" attrs="{'readonly': [('state', '!=', 'draft')]}" nolabel="1">
                             <tree>
                                 <field name="name"/>
                                 <field name="partner_id"/>

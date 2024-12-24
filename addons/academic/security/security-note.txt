@@ -1,0 +1,20 @@
+id,name,model_id:id,group_id:id,perm_read,perm_create,perm_write,perm_unlink
+access_admin_academic_course,access_admin_academic_course,model_academic_course,base.group_system,1,1,1,1
+access_admin_academic_session,access_admin_academic_session,model_academic_session,base.group_system,1,1,1,1
+access_admin_academic_attendee,access_admin_academic_attendee,model_academic_attendee,base.group_system,1,1,1,1
+
+
+
+jadi ketika aku mau membuat security baru dari role baru
+id dan name buat unique
+model dibuat sama
+group id ambil dari xml, tambahkan nama addons didepanya
+contoh: - <nama addons>.<nama group>
+
+misalkan user tidak boleh delte
+
+perm unlink dibuat 0
+access_user_academic_attendee,access_user_academic_attendee,model_academic_attendee,academic.group_academic_user,1,1,1,0
+
+
+jadi nanti di groups, role permission akan terbuat
