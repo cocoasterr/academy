@@ -13,6 +13,7 @@
         Custom addons for education
         """,
     "data": [
+        "security/groups.xml",
         "security/ir.model.access.csv",
         "menu.xml",
         "course.xml",

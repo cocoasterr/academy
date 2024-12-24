@@ -1,0 +1,11 @@
+<odoo>
+    <!-- supaya ketika addons di upgrade tidak mengupgrade groups yang sudah ada -->
+    <data noupdate="0">
+        <record id="group_academic_manager" model="res.groups">
+            <field name="name">Academic/Manager</field>
+        </record>
+        <record id="group_academic_user" model="res.groups">
+            <field name="name">Academic/User</field>
+        </record>
+    </data>
+</odoo>
