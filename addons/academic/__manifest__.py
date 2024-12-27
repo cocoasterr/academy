@@ -13,6 +13,7 @@
         Custom addons for education
         """,
     "data": [
+        "wizard/create_attendee.xml",
         "security/groups.xml",
         "security/ir.model.access.csv",
         "menu.xml",

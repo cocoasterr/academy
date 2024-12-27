@@ -70,7 +70,7 @@ class Session(models.Model):# package bawaan odoo
     @api.constrains('instructure_id', 'attendee_ids')
     def _check_instructure(self):
         for session in self:
-            # apakah instructure_id ada disalah satu attendee id
+            # apakah instructure_id ada disalah satu attendee id    
             # jika ada validation error
             partner_ids = []
             for attendee in session.attendee_ids:
@@ -84,3 +84,23 @@ class Session(models.Model):# package bawaan odoo
         self.ensure_one()
         d = dict(default or {},name = f"copy of {self.name}")
         return super(Session, self).copy(default = d)
+    
+    def open_wizard(self):
+        view = self.env.ref('academic.create_attendee_wizard_form')
+
+        wizard = self.env['academic.create.attendee.wizard'].create({
+            'session_id': self.id
+        })  
+
+        return {
+            'name': 'Add Attendee',
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'academic.create.attendee.wizard',
+            'views': [(view.id, 'form')],
+            'view_id': view.id,
+            'target': 'new',
+            'res_id': wizard.id,
+            'context': self.env.context,
+        }
