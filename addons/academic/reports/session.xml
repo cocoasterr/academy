@@ -1,0 +1,81 @@
+<odoo>
+    <data>
+        <record id="action_report_session" model="ir.actions.report">
+            <field name="name">Session Report</field>
+            <field name="model">academic.session</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">academic.academic_report_session</field>
+            <field name="report_file">academic.academic_report_session</field>
+            <field name="print_report_name">object.name</field>
+            <field name="binding_model_id" ref="academic.model_academic_session"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="academic_report_session">
+            <!-- memanggil template standard odoo -->
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <!-- looping session yang mau di print -->
+                    <t t-call="academic.academic_report_session_document"/>
+                </t>
+            </t>
+        </template>
+
+        <template id="academic_report_session_document">
+            <t t-call="web.external_layout">
+                <!-- set language dokument dalam bhs inggris -->
+                <t t-set="doc" t-value="doc.with_context({'lang': doc.instructure_id.lang})"/>
+
+                <div class="page">
+                    <!-- image -->
+                    <!-- <div t-if="doc.image_session" t-att-src="'data:image/png;base64,%s' % doc.image_session" style="max-width: 300px; max-height: 300px;"></div> -->
+                    <!-- <t t-if="doc.image_session">
+                        <img t-att-src="'data:image/png;base64,%s' % doc.image_session" style="max-width: 300px; max-height: 300px;" />
+                    </t> -->
+                    <h2>Session: <span t-field="doc.name"/></h2>
+                    <table class="table table-condensed">
+                        <tr>
+                            <td>Course</td>
+                            <th style="text-align: left;"><span t-field="doc.course_id"/></th>
+
+                            <td>Instructure</td>
+                            <th style="text-align: left;"><span t-field="doc.instructure_id"/></th>
+                        </tr>
+                        <tr>
+                            <td>Start Date</td>
+                            <th style="text-align: left;"><span t-field="doc.start_date"/></th>
+                            
+                            <td>Duration</td>
+                            <th style="text-align: left;"><span t-field="doc.duration"/></th>
+                        </tr>
+                        <tr>
+                            <td>Seats</td>
+                            <th style="text-align: left;"><span t-field="doc.seats"/></th>
+                            
+                            <td>Active</td>
+                            <th style="text-align: left;"><span t-field="doc.active"/></th>
+                        </tr>
+                    </table>
+
+                    <!-- table attendee -->
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Partner</th>
+                                <th>Signed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="doc.attendee_ids" t-as="attendee">
+                                <td><span t-field="attendee.name"/></td>
+                                <td><span t-field="attendee.partner_id"/></td>
+                                <td><span t-field="attendee.session_id"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

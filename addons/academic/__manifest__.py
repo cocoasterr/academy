@@ -2,7 +2,8 @@
     "name": "Academic Information System v.1.0",
     "version": "1.0",
     "depends": [
-        "base"
+        "base",
+        "board",
     ], #list addons yang dibutuhkan pada custom addons
     "author": "Idoo",
     "category": "Education",
@@ -21,6 +22,8 @@
         "session.xml",
         "attendee.xml",
         "partner.xml",
+        "reports/session.xml",
+        "dashboard.xml",
     ],# data data yang akan di insert ke database jika addons ini di install
     "installable": True, # apakah addons ini bisa di install atau tidak
     "auto_install": False, # apakah addons ini akan di install secara otomatis

@@ -1,5 +1,8 @@
 <odoo>
 <data>
+<!--
+TODO:
+ ValueError: Wrong value for res.partner.category_id: instructure -->
     <record id="partner_instructure_form" model="ir.ui.view">
         <field name="name">partner_instructure_form</field>
         <field name="model">res.partner</field>
