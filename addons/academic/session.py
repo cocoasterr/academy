@@ -52,7 +52,7 @@ class Session(models.Model):# package bawaan odoo
         for rec in self:
             if rec.seats > 0:
                 rec.percentage_taken_seats = 100.0 * (len(rec.attendee_ids) / rec.seats)
-            else:
+            else:  
                 rec.percentage_taken_seats = 0.0
                 
     # Event on change

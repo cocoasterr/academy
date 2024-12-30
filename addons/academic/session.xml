@@ -57,7 +57,8 @@
                     <group>
                         <field name="course_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         <!-- melakukan filter is_instructure yang true -->
-                        <field name="instructure_id" attrs="{'readonly': [('state', '!=', 'draft')]}" domain="['|','|', ('is_instructure', '=', True), ('category_id', '=', 'instructure'), ('category_id', '=', 'trainer')]"/>
+                        <field name="instructure_id" attrs="{'readonly': [('state', '!=', 'draft')]}" domain="['|','|', ('is_instructure', '=', True), ('category_id', '=', 'trainer')]"/>
+                        <!-- <field name="instructure_id" attrs="{'readonly': [('state', '!=', 'draft')]}" domain="['|','|', ('is_instructure', '=', True), ('category_id', '=', 'instructure'), ('category_id', '=', 'trainer')]"/> -->
                         <field name="start_date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                     </group>
                     <!-- Group kolom kanan -->

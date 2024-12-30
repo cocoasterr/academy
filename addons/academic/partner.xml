@@ -9,7 +9,7 @@ TODO:
         <!-- untuk inherit tambahin ini -->
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <field name="category_id" position="after">
+                <field name="category_id" position="after">
                 <field name="is_instructure"/>
             </field>
         </field>
