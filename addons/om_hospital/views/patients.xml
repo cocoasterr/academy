@@ -1,0 +1,30 @@
+<odoo>
+    <record id="view_hospital_patient_tree" model="ir.ui.view">
+        <field name="name">view_hospital_patient_tree</field>
+        <field name="model">hospital.patients</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Patients">
+                <field name="name"/>
+                <field name="age"/>
+                <field name="notes"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_hospital_patient_tree" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="res_model">hospital.patients</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_hospital_patient_tree"/>
+    </record>
+
+    <menuitem 
+    id="hospital_2"
+    name="Patients"
+    parent="hospital_1"
+    action="action_hospital_patient_tree"
+    sequence="30"
+    />
+</odoo>
